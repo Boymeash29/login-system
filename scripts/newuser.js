@@ -8,6 +8,6 @@ function newuser(form) {
 		alert("Username - 'members', password - 'ewbuccclub'")/* Member username and password*/
 	}
 	else {
-		alert("Incorrect code. Please re-try or contact Michael for assistance.")/* No such user */
+		alert("Incorrect code. Please re-try or contact Asher or Muhammad for assistance.")/* No such user */
 	}
 }
