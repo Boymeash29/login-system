@@ -6,7 +6,7 @@ function check(form) {
 		location.replace('#adminhome')/* The Administrator homepage */
 	}
 	else if(form.userid.value == username[2] && form.pswrd.value == password[2]) {
-		location.replace('eaglercraftpwa/index.html')/* The members homepage */
+		location.replace('memebers/home.html')/* The members homepage */
 	}
 	else if(form.userid.value == username[0]||form.userid.value == username[1]||form.userid.value == username[2]) {
 		alert("Incorrect Password")
