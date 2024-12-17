@@ -7,6 +7,9 @@ function newuser(form) {
 	else if(form.code.value == registercode[1]) {
 		alert("Username - 'members', password - 'ewbuccclub'")/* Member username and password*/
 	}
+	else if(form.code.value == registercode[1]) {
+		alert("Username - 'ahmedmuh29@7hills.org', password - 'weft50Ivy'")/* Member username and password*/
+	}
 	else {
 		alert("Incorrect code. Please re-try or contact Asher or Muhammad for assistance.")/* No such user */
 	}
