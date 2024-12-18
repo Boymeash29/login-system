@@ -9,7 +9,7 @@ function check(form) {
             localStorage.setItem("username", username[i]); // Store the logged-in username
 
             // Redirect based on user role
-            if (username[i] === "Asher" || username[i] === "Muhammad") {
+            if (username[i] === "Asher" || username[i] === "Muhammad" || username[i] === "Admin") {
                 location.replace("admin.html"); // Redirect admins to admin panel
             } else {
                 location.replace("memebers/home.html"); // Redirect regular users to home
