@@ -9,14 +9,14 @@
         const username = localStorage.getItem("username");
         if (localStorage.getItem("isLoggedIn") !== "true" || (username !== "Asher" && username !== "Muhammad")) {
             alert("You are not authorized to access this page.");
-            window.location.replace("../index.html");
+            window.location.replace("/index.html");
         }
 
         // Retrieve users dynamically from localStorage
         let users = JSON.parse(localStorage.getItem("users")) || [];
 
         // Initialize sample data if users don't exist
-        if (users.length === 4) {
+        if (users.length === 0) {
             users = [
                 { username: "Admin", role: "Admin" },
                 { username: "Asher", role: "Admin" },
