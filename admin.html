@@ -18,11 +18,10 @@
         // Initialize sample data if users don't exist
         if (users.length === 0) {
             users = [
+                { username: "Admin", role: "Admin" },
                 { username: "Asher", role: "Admin" },
                 { username: "Muhammad", role: "Admin" },
-                { username: "Theo", role: "Member" },
-                { username: "Will", role: "Member" },
-                { username: "Kavi", role: "Member" }
+                { username: "Theo", role: "Member" }
             ];
             localStorage.setItem("users", JSON.stringify(users));
         }
