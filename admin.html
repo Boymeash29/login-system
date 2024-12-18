@@ -12,14 +12,20 @@
             window.location.replace("../index.html");
         }
 
-        // Simulated user data (replace with server-side storage in production)
-        const users = [
-            { username: "Asher", role: "Admin" },
-            { username: "Muhammad", role: "Admin" },
-            { username: "Theo", role: "Member" },
-            { username: "Will", role: "Member" },
-            { username: "Kavi", role: "Member" }
-        ];
+        // Retrieve users dynamically from localStorage
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Initialize sample data if users don't exist
+        if (users.length === 0) {
+            users = [
+                { username: "Asher", role: "Admin" },
+                { username: "Muhammad", role: "Admin" },
+                { username: "Theo", role: "Member" },
+                { username: "Will", role: "Member" },
+                { username: "Kavi", role: "Member" }
+            ];
+            localStorage.setItem("users", JSON.stringify(users));
+        }
     </script>
     <style>
         body {
@@ -124,6 +130,7 @@
             const newRole = prompt(`Edit role for ${users[index].username} (Admin/Member):`, users[index].role);
             if (newRole === "Admin" || newRole === "Member") {
                 users[index].role = newRole;
+                localStorage.setItem("users", JSON.stringify(users)); // Save changes
                 populateUserTable();
             } else {
                 alert("Invalid role.");
@@ -134,6 +141,7 @@
         function deleteUser(index) {
             if (confirm(`Are you sure you want to delete ${users[index].username}?`)) {
                 users.splice(index, 1);
+                localStorage.setItem("users", JSON.stringify(users)); // Save changes
                 populateUserTable();
             }
         }
