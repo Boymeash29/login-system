@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <script>
+        // Redirect if not logged in or not an admin
+        const username = localStorage.getItem("username");
+        if (localStorage.getItem("isLoggedIn") !== "true" || (username !== "Asher" && username !== "Muhammad")) {
+            alert("You are not authorized to access this page.");
+            window.location.replace("../index.html");
+        }
+
+        // Simulated user data (replace with server-side storage in production)
+        const users = [
+            { username: "Asher", role: "Admin" },
+            { username: "Muhammad", role: "Admin" },
+            { username: "Theo", role: "Member" },
+            { username: "Will", role: "Member" },
+            { username: "Kavi", role: "Member" }
+        ];
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .button.edit {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .button.delete {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <p>Welcome, Admin!</p>
+
+    <!-- Section 1: User Management -->
+    <h2>User Management</h2>
+    <table id="user-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be dynamically populated -->
+        </tbody>
+    </table>
+
+    <!-- Section 2: System Metrics -->
+    <h2>System Metrics</h2>
+    <p>Total Users: <span id="total-users">0</span></p>
+    <p>Admins: <span id="total-admins">0</span></p>
+    <p>Members: <span id="total-members">0</span></p>
+
+    <!-- Section 3: Site Settings -->
+    <h2>Settings</h2>
+    <label for="site-theme">Select Site Theme:</label>
+    <select id="site-theme" onchange="changeTheme()">
+        <option value="default">Default</option>
+        <option value="dark">Dark Mode</option>
+        <option value="light">Light Mode</option>
+    </select>
+
+    <!-- Logout Button -->
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        // Populate User Table
+        function populateUserTable() {
+            const tableBody = document.getElementById("user-table").querySelector("tbody");
+            tableBody.innerHTML = ""; // Clear existing rows
+
+            users.forEach((user, index) => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${user.username}</td>
+                    <td>${user.role}</td>
+                    <td>
+                        <button class="button edit" onclick="editUser(${index})">Edit</button>
+                        <button class="button delete" onclick="deleteUser(${index})">Delete</button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+
+            // Update metrics
+            document.getElementById("total-users").innerText = users.length;
+            document.getElementById("total-admins").innerText = users.filter(user => user.role === "Admin").length;
+            document.getElementById("total-members").innerText = users.filter(user => user.role === "Member").length;
+        }
+
+        // Edit User
+        function editUser(index) {
+            const newRole = prompt(`Edit role for ${users[index].username} (Admin/Member):`, users[index].role);
+            if (newRole === "Admin" || newRole === "Member") {
+                users[index].role = newRole;
+                populateUserTable();
+            } else {
+                alert("Invalid role.");
+            }
+        }
+
+        // Delete User
+        function deleteUser(index) {
+            if (confirm(`Are you sure you want to delete ${users[index].username}?`)) {
+                users.splice(index, 1);
+                populateUserTable();
+            }
+        }
+
+        // Change Theme
+        function changeTheme() {
+            const theme = document.getElementById("site-theme").value;
+            if (theme === "dark") {
+                document.body.style.backgroundColor = "#333";
+                document.body.style.color = "#fff";
+            } else if (theme === "light") {
+                document.body.style.backgroundColor = "#fff";
+                document.body.style.color = "#000";
+            } else {
+                document.body.style.backgroundColor = "";
+                document.body.style.color = "";
+            }
+        }
+
+        // Logout Function
+        function logout() {
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("username");
+            window.location.replace("../index.html");
+        }
+
+        // Initialize Admin Panel
+        window.onload = populateUserTable;
+    </script>
+</body>
+</html>
