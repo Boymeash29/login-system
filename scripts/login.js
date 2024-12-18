@@ -8,8 +8,7 @@
             { username: "Asher", password: ")bpG!5Ls$w04", role: "Admin", ip: null },
             { username: "Muhammad", password: "&Ji+)1221a47", role: "Admin", ip: null },
             { username: "Theo", password: "xzH46@S@30B", role: "Member", ip: null },
-            { username: "Will", password: "8#dJj1vDft.9", role: "Member", ip: null },
-            { username: "Kavi", password: "4z`DN46[x1W8", role: "Member", ip: null }
+            { username: "Admin", password: "4P3u9$vavq^F", role: "Admin", ip: null }
         ];
 
         const user = users.find(u => u.username === username && u.password === password);
