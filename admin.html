@@ -9,7 +9,7 @@
         const username = localStorage.getItem("username");
         if (localStorage.getItem("isLoggedIn") !== "true" || (username !== "Asher" && username !== "Muhammad" && username !== "Admin")) {
             alert("You are not authorized to access this page.");
-            window.location.replace("/index.html");
+            window.location.replace("login-system/index.html");
         }
 
         // Retrieve users dynamically from localStorage
